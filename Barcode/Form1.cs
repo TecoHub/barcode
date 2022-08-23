@@ -68,18 +68,30 @@ namespace Barcode
             {
                 //data
                 DataGridViewRow newRow = new DataGridViewRow();
-                maingrid.ColumnCount = 2;
+                maingrid.ColumnCount = 3;
                 newRow.CreateCells(maingrid);
                 newRow.Cells[0].Value = Product_Code[i];
                 newRow.Cells[1].Value = Product_Name[i];
+                newRow.Cells[2].Value = P_UnitPrice[i];
                 maingrid.Rows.Add(newRow);
 
                 //styles
-                maingrid.Columns[1].Width = 386;
                 maingrid.Columns[0].HeaderText = "商品コード";
+
                 maingrid.Columns[1].HeaderText = "商品名";
+                maingrid.Columns[1].Width = 326;
+
+                maingrid.Columns[2].HeaderText = "価格";
+                maingrid.Columns[2].Width = 70;
 
             }
+
+            //Add a CheckBox Column to the DataGridView at the first position.
+            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
+            checkBoxColumn.HeaderText = "";
+            checkBoxColumn.Width = 30;
+            checkBoxColumn.Name = "checkBoxColumn";
+            maingrid.Columns.Insert(0, checkBoxColumn);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -107,75 +119,92 @@ namespace Barcode
 
         private void button2_Click(object sender, EventArgs e)
         {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("商品コード");
+            dt.Columns.Add("商品名");
+            dt.Columns.Add("価格");
+            dt.Columns.Add("ステッカー数量");
+
+
+            foreach (DataGridViewRow row in maingrid.Rows)
+            {
+                bool isSelected = Convert.ToBoolean(row.Cells["checkBoxColumn"].Value);
+                if (isSelected)
+                {
+                    dt.Rows.Add(row.Cells[1].Value, row.Cells[2].Value, row.Cells[3].Value);
+                }
+            }
+            dataGridView3.DataSource = dt;
 
         }
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             
-            if (checkBox1.Checked)
-            {
-                maingrid.Rows.Clear();
+            //if (checkBox1.Checked)
+            //{
+            //    maingrid.Rows.Clear();
 
-                for (int i = 0; i < Product_Code.Count; i++)
-                {
-                    //data
-                    DataGridViewRow newRow = new DataGridViewRow();
-                    maingrid.ColumnCount = 3;
-                    newRow.CreateCells(maingrid);
-                    newRow.Cells[0].Value = Product_Code[i];
-                    newRow.Cells[1].Value = Product_Name[i];
-                    newRow.Cells[2].Value = P_UnitPrice[i];
-                    maingrid.Rows.Add(newRow);
+            //    for (int i = 0; i < Product_Code.Count; i++)
+            //    {
+            //        //data
+            //        DataGridViewRow newRow = new DataGridViewRow();
+            //        maingrid.ColumnCount = 3;
+            //        newRow.CreateCells(maingrid);
+            //        newRow.Cells[0].Value = Product_Code[i];
+            //        newRow.Cells[1].Value = Product_Name[i];
+            //        newRow.Cells[2].Value = P_UnitPrice[i];
+            //        maingrid.Rows.Add(newRow);
 
-                    //styles
-                    maingrid.Columns[1].Width = 326;
-                    maingrid.Columns[2].Width = 60;
-                    maingrid.Columns[0].HeaderText = "商品コード";
-                    maingrid.Columns[1].HeaderText = "商品名";
-                    maingrid.Columns[2].HeaderText = "価格";
-                }
+            //        //styles
+            //        maingrid.Columns[1].Width = 326;
+            //        maingrid.Columns[2].Width = 60;
+            //        maingrid.Columns[0].HeaderText = "商品コード";
+            //        maingrid.Columns[1].HeaderText = "商品名";
+            //        maingrid.Columns[2].HeaderText = "価格";
+            //    }
 
-            } else
-            {
-                maingrid.Rows.Clear();
+            //} else
+            //{
+            //    maingrid.Rows.Clear();
 
-                for (int i = 0; i < Product_Code.Count; i++)
-                {
-                    //data
-                    DataGridViewRow newRow = new DataGridViewRow();
-                    maingrid.ColumnCount = 2;
-                    newRow.CreateCells(maingrid);
-                    newRow.Cells[0].Value = Product_Code[i];
-                    newRow.Cells[1].Value = Product_Name[i];
+            //    for (int i = 0; i < Product_Code.Count; i++)
+            //    {
+            //        //data
+            //        DataGridViewRow newRow = new DataGridViewRow();
+            //        maingrid.ColumnCount = 2;
+            //        newRow.CreateCells(maingrid);
+            //        newRow.Cells[0].Value = Product_Code[i];
+            //        newRow.Cells[1].Value = Product_Name[i];
 
 
 
-                    maingrid.Rows.Add(newRow);
+            //        maingrid.Rows.Add(newRow);
 
-                    //styles
-                    maingrid.Columns[1].Width = 386;
-                    maingrid.Columns[0].HeaderText = "商品コード";
-                    maingrid.Columns[1].HeaderText = "商品名";
+            //        //styles
+            //        maingrid.Columns[1].Width = 386;
+            //        maingrid.Columns[0].HeaderText = "商品コード";
+            //        maingrid.Columns[1].HeaderText = "商品名";
 
-                }
-            }
+            //    }
+            //}
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             string textboxvalue = textBox2.Text;
 
-                maingrid.Rows.Clear();
-                try
-                {
+            maingrid.Rows.Clear();
+            try
+            {
                     con.Open();
-                    string query = "select * from Product_New where Product_Name like \'%" + textboxvalue + "%\'";
+                    string query = "select * from Product_New where Product_Name like '%" + textboxvalue + "%'";
 
                     //MySqlDataReader row;  
                     MySqlDataReader row;
@@ -200,6 +229,6 @@ namespace Barcode
                 {
                     MessageBox.Show(err.ToString());
                 }
-            }
-        }
+            } 
+        } 
     }

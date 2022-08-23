@@ -37,15 +37,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.maingrid = new System.Windows.Forms.DataGridView();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maingrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -128,31 +125,26 @@
             this.button1.Text = "印刷";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button3
-            // 
-            this.button3.Image = global::Barcode.Properties.Resources.arrow_left;
-            this.button3.Location = new System.Drawing.Point(605, 520);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(89, 45);
-            this.button3.TabIndex = 6;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // button2
             // 
-            this.button2.Image = global::Barcode.Properties.Resources.arrow_right;
-            this.button2.Location = new System.Drawing.Point(605, 452);
+            this.button2.Image = global::Barcode.Properties.Resources.refresh;
+            this.button2.Location = new System.Drawing.Point(603, 465);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(89, 45);
+            this.button2.Size = new System.Drawing.Size(89, 79);
             this.button2.TabIndex = 5;
+            this.button2.Text = "更新";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // maingrid
             // 
+            this.maingrid.AllowUserToResizeColumns = false;
+            this.maingrid.AllowUserToResizeRows = false;
             this.maingrid.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.maingrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.maingrid.Location = new System.Drawing.Point(39, 328);
             this.maingrid.Name = "maingrid";
+            this.maingrid.RowHeadersVisible = false;
             this.maingrid.RowTemplate.Height = 21;
             this.maingrid.Size = new System.Drawing.Size(546, 348);
             this.maingrid.TabIndex = 7;
@@ -165,29 +157,17 @@
             this.dataGridView3.Location = new System.Drawing.Point(710, 153);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 21;
-            this.dataGridView3.Size = new System.Drawing.Size(424, 523);
+            this.dataGridView3.Size = new System.Drawing.Size(478, 523);
             this.dataGridView3.TabIndex = 9;
             this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
-            // 
-            // dataGridView5
-            // 
-            this.dataGridView5.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(1140, 153);
-            this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.RowTemplate.Height = 21;
-            this.dataGridView5.Size = new System.Drawing.Size(48, 523);
-            this.dataGridView5.TabIndex = 11;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1230, 711);
-            this.Controls.Add(this.dataGridView5);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.maingrid);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBox1);
@@ -202,7 +182,6 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maingrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,10 +198,8 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView maingrid;
         private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.DataGridView dataGridView5;
     }
 }
 
